@@ -54,46 +54,46 @@
   <body id="page4">
 
   	<div class="body1">
-  	<div class="body2">
-  	<div class="body5">
-  		<div class="main zerogrid">
-  <!-- header -->
-  			<header>
-          <br>
-  				<div class="wrapper rơw">
-          <h1><a id="logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" /></a></h1>
-  				<nav>
-  					<ul id="menu">
-              <?php
-                if ($_SESSION['permissions'] != NULL){
-                  echo "<li id='nav1'><a href='".base_url()."User/loadPrincipalView'>Bienvenid@<span>".$_SESSION['name']."</span></a></li>";
-                  if($_SESSION['permissions'][3] == 1){
-                    echo "<li id='nav3'><a href='#'>PVD<span>HV</span></a></li>";
-                  }
-                  if($_SESSION['permissions'][1] == 1){
-                    echo "<li id='nav4'><a href='".base_url()."Mantenimientos/loadMPView'>Preventivos<span>Mantenimientos</span></a></li>";
-                  }
-                  if($_SESSION['permissions'][2] == 1){
-                    echo "<li id='nav4'><a href='".base_url()."MCorrectivos/verMC'>Correctivos<span>Mantenimientos</span></a></li>";
-                  }
-                  if($_SESSION['permissions'][4] == 1){
-									echo "<li id='nav2'><a href='http://legalizaciones.us-west-2.elasticbeanstalk.com/?usuarioAdmin=".$_SESSION['id']."&passAdmin=".$_SESSION['pass']."'>legalizaciones<span>legalizaciones</span></a></li>";
-								}
-                  if($_SESSION['permissions'][5] == 1){
-                    echo "<li id='nav5'><a href='".base_url()."ZTEPlatform/platformZTE'>ZTE<span>Plataforma</span></a></li>";
-                  }
-                }
-              ?>
-              <li id="nav6"><a href="<?php echo base_url(); ?>welcome/index">Salir<span>Logout</span></a></li>
-  					</ul>
-  				</nav>
-  				</div>
-  			</header>
-  <!-- header end-->
-  <!-- content -->
-  		</div>
-  	</div>
-  	</div>
+    	<div class="body2">
+      	<div class="body5">
+      		<div class="main zerogrid">
+      <!-- header -->
+      			<header>
+              <br>
+      				<div class="wrapper rơw">
+              <h1><a id="logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" /></a></h1>
+      				<nav>
+      					<ul id="menu">
+                  <?php
+                    if ($_SESSION['permissions'] != NULL){
+                      echo "<li id='nav1'><a href='".base_url()."User/loadPrincipalView'>Bienvenid@<span>".$_SESSION['name']."</span></a></li>";
+                      if($_SESSION['permissions'][3] == 1){
+                        echo "<li id='nav3'><a href='#'>PVD<span>HV</span></a></li>";
+                      }
+                      if($_SESSION['permissions'][1] == 1){
+                        echo "<li id='nav4'><a href='".base_url()."Mantenimientos/loadMPView'>Preventivos<span>Mantenimientos</span></a></li>";
+                      }
+                      if($_SESSION['permissions'][2] == 1){
+                        echo "<li id='nav4'><a href='".base_url()."MCorrectivos/verMC'>Correctivos<span>Mantenimientos</span></a></li>";
+                      }
+                      if($_SESSION['permissions'][4] == 1){
+    									echo "<li id='nav2'><a href='http://legalizaciones.us-west-2.elasticbeanstalk.com/?usuarioAdmin=".$_SESSION['id']."&passAdmin=".$_SESSION['pass']."'>legalizaciones<span>legalizaciones</span></a></li>";
+    								}
+                      if($_SESSION['permissions'][5] == 1){
+                        echo "<li id='nav5'><a href='".base_url()."ZTEPlatform/platformZTE'>ZTE<span>Plataforma</span></a></li>";
+                      }
+                    }
+                  ?>
+                  <li id="nav6"><a href="<?php echo base_url(); ?>welcome/index">Salir<span>Logout</span></a></li>
+      					</ul>
+      				</nav>
+      				</div>
+      			</header>
+      <!-- header end-->
+      <!-- content -->
+      		</div>
+      	</div>
+    	</div>
   	</div>
   	<div class="body3">
   		<div class="main zerogrid">

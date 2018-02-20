@@ -17,8 +17,11 @@ $(function () {
             $('#tablePreventive').on('click', 'tr', vista.onClickTrTablePreventive);
             //funcion para llenar select del formulario del modal
             vista.fillSelect();
-
-            $('#mbtnUpdticket').on('click', vista.onClickBotonActualizar);
+            if (permisos == 1) {
+              $('#mbtnUpdticket').on('click', vista.onClickBotonActualizar);              
+            } else {
+              $('#mbtnUpdticket').on('click',alert('no tienes permiso para editar tickets'));
+            }
 
             // $('table').off('click', '.btn-preview', vista.onClickPreviewBtn);
             // $('table').on('click', '.btn-preview', vista.onClickPreviewBtn);

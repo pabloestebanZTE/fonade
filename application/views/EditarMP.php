@@ -24,40 +24,45 @@
   </head>
 
   <body>
-  	<div class="body5" style="width: 10px; height: ">
-  		<div class="main zerogrid">
-  <!-- header -->
-  			<header>
-  				<div class="wrapper rơw">
-          <h1><a id="logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" /></a></h1>
-  				<nav>
-  					<ul id="menu">
-              <?php
-              if ($_SESSION['permissions'] != NULL){
-                  echo "<li id='nav1'><a href='".base_url()."User/loadPrincipalView'>Bienvenid@<span>".$_SESSION['name']."</span></a></li>";
-                  if($_SESSION['permissions'][3] == 1){
-                    echo "<li id='nav3'><a href='#'>PVD<span>HV</span></a></li>";
-                  }
-                  if($_SESSION['permissions'][1] == 1){
-                    echo "<li id='nav4' ><a href='".base_url()."Mantenimientos/loadMPView'>Preventivos<span>Mantenimientos</span></a></li>";
-                  }
-                  if($_SESSION['permissions'][2] == 1){
-                    echo "<li id='nav4'><a href='".base_url()."MCorrectivos/verMC'>Correctivos<span>Mantenimientos</span></a></li>";
-                  }
-                  if($_SESSION['permissions'][4] == 1){
-									echo "<li id='nav2'><a href='http://legalizaciones.us-west-2.elasticbeanstalk.com/?usuarioAdmin=".$_SESSION['id']."&passAdmin=".$_SESSION['pass']."'>legalizaciones<span>legalizaciones</span></a></li>";
-								}
-                  if($_SESSION['permissions'][5] == 1){
-                    echo "<li id='nav5'><a href='".base_url()."ZTEPlatform/platformZTE'>ZTE<span>Plataforma</span></a></li>";
-                  }
-                }
-              ?>
-              <li id="nav6"><a href="<?php echo base_url(); ?>welcome/index">Salir<span>Logout</span></a></li>
-            </ul>
-          </nav>
+  	<div class="body1">
+      <div class="body2">
+        <div class="body5">
+          <div class="main zerogrid">
+      <!-- header -->
+            <header>
+              <div class="wrapper rơw">
+              <h1><a id="logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" /></a></h1>
+              <nav>
+                <ul id="menu" class="menuTop">
+                  <?php
+                    if ($_SESSION['permissions'] != NULL){
+                      echo "<li id='nav1'><a href='".base_url()."User/loadPrincipalView'>Bienvenid@<span>".$_SESSION['name']."</span></a></li>";
+                      if($_SESSION['permissions'][3] == 1){
+                        echo "<li id='nav3'><a href='#'>PVD<span>HV</span></a></li>";
+                      }
+                      if($_SESSION['permissions'][1] == 1){
+                        echo "<li id='nav4'><a href='".base_url()."Mantenimientos/loadMPView'>Preventivos<span>Mantenimientos</span></a></li>";
+                      }
+                      if($_SESSION['permissions'][2] == 1){
+                        echo "<li id='nav4'><a href='".base_url()."MCorrectivos/verMC'>Correctivos<span>Mantenimientos</span></a></li>";
+                      }
+                      if($_SESSION['permissions'][4] == 1){
+                      echo "<li id='nav2'><a href='http://legalizaciones.us-west-2.elasticbeanstalk.com/?usuarioAdmin=".$_SESSION['id']."&passAdmin=".$_SESSION['pass']."'>legalizaciones<span>legalizaciones</span></a></li>";
+                    }
+                      if($_SESSION['permissions'][5] == 1){
+                        echo "<li id='nav5'><a href='".base_url()."ZTEPlatform/platformZTE'>ZTE<span>Plataforma</span></a></li>";
+                      }
+                    }
+                  ?>
+                  <li id="nav6"><a href="<?php echo base_url(); ?>welcome/index">Salir<span>Logout</span></a></li>
+                </ul>
+              </nav>
+              </div>
+            </header>
+      <!-- header end-->
+      <!-- content -->
           </div>
-        </header>
-  <!-- header end-->
+        </div>
       </div>
     </div>
  <div class="bodyEdit">
@@ -140,7 +145,7 @@
                     <label for="mtxtEstado" class="col-md-3 control-label">Estado: &nbsp;</label>
                     <div class="col-md-8 selectContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                            <span class="input-group-addon" id="statusColor"><i class="glyphicon glyphicon-hand-right"></i></span>
                             <select name="mtxtEstado" id="mtxtEstado" class="form-control"> <!-- onchange="realizarCalificacion()" -->
                                 <option value="1">Abierto</option>
                                 <option value="2">En Progreso</option>
@@ -312,15 +317,18 @@
   </div>
 </div>
 
-
-
-    <!-- declrolo la url para usarla con js -->
+ 
     <script type="text/javascript">var baseurl = "<?php echo base_url(); ?>";</script>
+    <!-- declarola url para usarla con js y los permisos -->
+    <script type="text/javascript">
+        var baseurl = "<?php echo base_url(); ?>";
+        var permisos = "<?php echo $_SESSION['permissions'][4]; ?>"
+    </script>
         <!-- DataTables -->
     <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
         <!-- llenar tabla y editar -->
-    <script src="<?php echo base_url(); ?>assets/js/EditPreventivos/editPreventTable.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/editPreventivos/editPreventTable.js"></script>
 
 
   </body>

@@ -259,7 +259,7 @@ class Mantenimientos extends CI_Controller {
     }else{
       $respuesta = 0;
     }
-
+    print_r($parameter);
     echo json_encode($respuesta);
    }
 

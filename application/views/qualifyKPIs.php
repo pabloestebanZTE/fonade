@@ -26,7 +26,7 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cufon-replace.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/Swis721_Cn_BT_400.font.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/Swis721_Cn_BT_700.font.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/tabs.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/tabs2.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/css3-mediaqueries.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/css/canvasJS/canvasjs.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/css/sweetalert/dist/sweetalert.min.js"></script>
