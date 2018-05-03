@@ -190,7 +190,7 @@
                   <div class="col-md-8 selectContainer">
                       <div class="input-group">
                           <span class="input-group-addon"><i class='glyphicon glyphicon-user'></i></span>
-                          <select name="mtxtTecIT" id="mtxtTecIT" class="form-control"> <!-- onchange="realizarCalificacion()" -->
+                          <select name="mtxtTecIT" id="mtxtTecIT" class="form-control mtxtTecnico"> <!-- onchange="realizarCalificacion()" -->
                               <option value=""></option>
                           </select>
                       </div>
@@ -216,7 +216,7 @@
                     <div class="col-md-8 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class='glyphicon glyphicon-user'></i></span>
-                            <select name="mtxtAuxIT" id="mtxtAuxIT" class="form-control"> <!-- onchange="realizarCalificacion()" -->
+                            <select name="mtxtAuxIT" id="mtxtAuxIT" class="form-control mtxtTecnico"> <!-- onchange="realizarCalificacion()" -->
                                 <option value=""></option>
                             </select>
                         </div>
@@ -246,7 +246,7 @@
                     <div class="col-md-8 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class='glyphicon glyphicon-user'></i></span>
-                            <select name="mtxtTecAA" id="mtxtTecAA" class="form-control"> <!-- onchange="realizarCalificacion()" -->
+                            <select name="mtxtTecAA" id="mtxtTecAA" class="form-control mtxtTecnico"> <!-- onchange="realizarCalificacion()" -->
                                 <option value=""></option>
                             </select>
                         </div>
@@ -273,7 +273,7 @@
                       <div class="col-md-8 selectContainer">
                           <div class="input-group">
                               <span class="input-group-addon"><i class='glyphicon glyphicon-user'></i></span>
-                              <select name="mtxtAuxAA" id="mtxtAuxAA" class="form-control"> <!-- onchange="realizarCalificacion()" -->
+                              <select name="mtxtAuxAA" id="mtxtAuxAA" class="form-control mtxtTecnico"> <!-- onchange="realizarCalificacion()" -->
                                   <option value=""></option>
                               </select>
                           </div>
@@ -290,19 +290,39 @@
                       </div>
                     </div>
                   </fieldset>
-              </div>
+            </div>
 
-              <div class="widget bg_white m-t-25 display-block">
-                  <div class="form-group" id="formCenter">
-                    <!-- <label for="mtxtObservaciones" class="col-md-3 control-label">Observaciones: &nbsp;</label> -->
-                      <div class="col-md-10 selectContainer">
-                          <div class="input-group">
-                              <span class="input-group-addon"><i class='glyphicon glyphicon-edit'></i></span>
-                              <input name="mtxtObservaciones" id="mtxtObservaciones" class="form-control" type="text" placeholder="Observaciones">
-                          </div>
-                      </div>
-                  </div>                
-              </div>
+            <div class="widget bg_white m-t-25 display-block">
+                <div class="form-group" id="formCenter">
+                  <!-- <label for="mtxtObservaciones" class="col-md-3 control-label">Observaciones: &nbsp;</label> -->
+                    <div class="col-md-10 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class='glyphicon glyphicon-edit'></i></span>
+                            <input name="mtxtObservaciones" id="mtxtObservaciones" class="form-control" type="text" placeholder="Observaciones">
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+
+
+
+            <!-- espacio para adicionar tecnicos -->
+            <div class="widget bg_white m-t-25 display-block">
+
+              <fieldset class="col-md-6 control-label" id="fieldsetIT">
+                <div id="newItSeccion"></div>
+
+              </fieldset>
+              <!--  fin seccion izquierda form---->
+
+              <!--  inicio seccion derecha form---->
+              <fieldset id="fieldsetAA">
+                <span class="mg-20"><b> Añadir Técnico </b></span>
+                <div id="newAASeccion"></div>
+              </fieldset>
+
+            </div>
 
           </fieldset>
          </form>
@@ -316,7 +336,6 @@
     </div>
   </div>
 </div>
-
  
     <script type="text/javascript">var baseurl = "<?php echo base_url(); ?>";</script>
     <!-- declarola url para usarla con js y los permisos -->

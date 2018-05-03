@@ -245,3 +245,42 @@ textarea.form-control {
 .menuTop {
   margin-top: -85px;
 }
+
+
+
+.btn-upLoad {
+  flex-shrink: 0;
+        background-color: rgba(255, 255, 255, 0.04);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        padding: 1% 15% 1% 15%;
+        margin-right: 10px;
+        font-size: 12px;
+        text-transform: uppercase;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+
+}
+
+.btn-upLoad:hover {
+  background-color: rgb(160, 160, 160);
+  border: 1px solid rgba(23, 22, 22, 0.26);
+  color: #fff;
+}
+
+
+#mbtn-addAA {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.mg-20 {
+      color: #0b669a;
+    margin-left: 10%;
+    font-size: 16px;
+}
+
+.btn-minus {
+  background-color: rgba(255, 0, 0, 0.68);
+  color: #fff;
+  cursor: pointer;
+}

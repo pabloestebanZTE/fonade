@@ -74,13 +74,25 @@
                 $('#tipo').val(ticket[i].tipologia);
                 $('#idticket').val(ticket[i].maintenance[j].ticket[0].id);
                 $('#estado').val(ticket[i].maintenance[j].ticket[0].status);
-                $('#fechai').val(ticket[i].maintenance[j].ticket[0].dateStart);
-                $('#fechaf').val(ticket[i].maintenance[j].ticket[0].dateFinish);
+                if(ticket[i].maintenance[j].ticket[0].dateStart != "0000-00-00"){
+                  $('#fechai').val(ticket[i].maintenance[j].ticket[0].dateStart);
+                }
+                if(ticket[i].maintenance[j].ticket[0].dateFinish != "0000-00-00"){
+                  $('#fechaf').val(ticket[i].maintenance[j].ticket[0].dateFinish);
+                }
                 $('#duracion').val(ticket[i].maintenance[j].ticket[0].duracion);
-                $('#fechaiit').val(ticket[i].maintenance[j].ticket[0].dateStartIT);
-                $('#fechafit').val(ticket[i].maintenance[j].ticket[0].dateFinishIT);
-                $('#fechaiaa').val(ticket[i].maintenance[j].ticket[0].dateStartAA);
-                $('#fechafaa').val(ticket[i].maintenance[j].ticket[0].dateFinishAA);
+                if(ticket[i].maintenance[j].ticket[0].dateStartIT != "0000-00-00"){
+                  $('#fechaiit').val(ticket[i].maintenance[j].ticket[0].dateStartIT);
+                }
+                if(ticket[i].maintenance[j].ticket[0].dateFinishIT != "0000-00-00"){
+                  $('#fechafit').val(ticket[i].maintenance[j].ticket[0].dateFinishIT);
+                }
+                if(ticket[i].maintenance[j].ticket[0].dateStartAA != "0000-00-00"){
+                  $('#fechaiaa').val(ticket[i].maintenance[j].ticket[0].dateStartAA);
+                }
+                if(ticket[i].maintenance[j].ticket[0].dateFinishAA != "0000-00-00"){
+                  $('#fechafaa').val(ticket[i].maintenance[j].ticket[0].dateFinishAA);
+                }
                 $("#link").attr("href", "<?php echo base_url(); ?>Ticket/ticketDetails?k_ticket="+ticket[i].maintenance[j].ticket[0].id);
                 try {
                     $('#tit').val(ticket[i].maintenance[j].ticket[0].techs.users.IT_T.N_NAME+" "+ticket[i].maintenance[j].ticket[0].techs.users.IT_T.N_LASTNAME);
@@ -138,8 +150,8 @@
                     echo "<li id='nav4'><a href='#'>Correctivos<span>Mantenimientos</span></a></li>";
                   }
                   if($_SESSION['permissions'][4] == 1){
-									echo "<li id='nav2'><a href='http://legalizaciones.us-west-2.elasticbeanstalk.com/?usuarioAdmin=".$_SESSION['id']."&passAdmin=".$_SESSION['pass']."'>legalizaciones<span>legalizaciones</span></a></li>";
-								}
+                  echo "<li id='nav2'><a href='http://legalizaciones.us-west-2.elasticbeanstalk.com/?usuarioAdmin=".$_SESSION['id']."&passAdmin=".$_SESSION['pass']."'>legalizaciones<span>legalizaciones</span></a></li>";
+                }
                   if($_SESSION['permissions'][5] == 1){
                     echo "<li id='nav5'><a href='".base_url()."ZTEPlatform/platformZTE'>ZTE<span>Plataforma</span></a></li>";
                   }
@@ -163,98 +175,39 @@
         <article id="content" class="row bg-white">
           <div class="wrapper col-md-12">
             <h2 class="under">Información General</h2>
+            <h3 class="under">Usuario: zte-fonade / Password: a4b3c2d1</h3>
+
             <!-- primera Grafica -->
             <section>
-                  <div class='tableauPlaceholder' id='viz1518192808842' style='position: relative'>
-                    <noscript>
-                      <a href='#'><img alt='Cantidad de mantenimientos por región ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;ReporteFonade&#47;Cantidaddemantenimientosporregin&#47;1_rss.png' style='border: none' />
-                      </a>
-                    </noscript>
-                    <object class='tableauViz'  style='display:none;'>
-                      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                      <param name='embed_code_version' value='3' /> <param name='site_root' value='' />
-                      <param name='name' value='ReporteFonade&#47;Cantidaddemantenimientosporregin' />
-                      <param name='tabs' value='no' />
-                      <param name='toolbar' value='yes' />
-                      <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;ReporteFonade&#47;Cantidaddemantenimientosporregin&#47;1.png' />
-                      <param name='animate_transition' value='yes' />
-                      <param name='display_static_image' value='yes' />
-                      <param name='display_spinner' value='yes' />
-                      <param name='display_overlay' value='yes' />
-                      <param name='display_count' value='yes' />
-                    </object>
-                  </div>
-                <script type='text/javascript'>
-                    var divElement = document.getElementById('viz1518192808842');
-                    var vizElement = divElement.getElementsByTagName('object')[0];
-                        vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*2)+'px';
-                    var scriptElement = document.createElement('script');
-                        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                        vizElement.parentNode.insertBefore(scriptElement, vizElement);
-                </script>
-            <!-- segunda Grafica   -->
-            </section>
-              <div class='tableauPlaceholder' id='viz1518192943039' style='position: relative'>
-                <noscript>
-                    <a href='#'>
-                        <img alt='Estado mantenimientos por Región ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;ReporteFonade&#47;EstadomantenimientosporRegin&#47;1_rss.png' style='border: none' />
-                     </a>
-                </noscript>
-                <object class='tableauViz'  style='display:none;'>
-                  <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+              <script type='text/javascript' src='http://181.49.46.6/javascripts/api/viz_v1.js'></script>
+              <div class='tableauPlaceholder' style='width: 100%; height: 564px;'>
+                <object class='tableauViz' width='100%' height='564' style='display:none;'>
+                  <param name='host_url' value='http%3A%2F%2F181.49.46.6%2F' />
                   <param name='embed_code_version' value='3' />
                   <param name='site_root' value='' />
-                  <param name='name' value='ReporteFonade&#47;EstadomantenimientosporRegin' />
-                  <param name='tabs' value='no' />
+                  <param name='name' value='ReporteFonade&#47;Cantidaddemantenimientosporregin' />
+                  <param name='tabs' value='yes' />
                   <param name='toolbar' value='yes' />
-                  <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;ReporteFonade&#47;EstadomantenimientosporRegin&#47;1.png' />
-                  <param name='animate_transition' value='yes' />
-                  <param name='display_static_image' value='yes' />
-                  <param name='display_spinner' value='yes' />
-                  <param name='display_overlay' value='yes' />
-                  <param name='display_count' value='yes' />
+                  <param name='showAppBanner' value='false' />
+                  <param name='filter' value='iframeSizedToWindow=true' />
                 </object>
               </div>
-              <script type='text/javascript'>
-                var divElement = document.getElementById('viz1518192943039');
-                var vizElement = divElement.getElementsByTagName('object')[0];
-                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*2)+'px';
-                var scriptElement = document.createElement('script');
-                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                    vizElement.parentNode.insertBefore(scriptElement, vizElement);
-              </script>
-              <!-- tercera grafica -->
+            </section>
             <section>
-              <div class='tableauPlaceholder' id='viz1518192977179' style='position: relative'>
-                <noscript>
-                  <a href='#'>
-                    <img alt='Resumen y estadística ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;ReporteFonade&#47;Resumenyestadstica&#47;1_rss.png' style='border: none' />
-                  </a>
-                </noscript>
-                <object class='tableauViz'  style='display:none;'>
-                  <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+              <script type='text/javascript' src='http://181.49.46.6/javascripts/api/viz_v1.js'></script>
+              <div class='tableauPlaceholder' style='width: 100%; height: 564px;'>
+                <object class='tableauViz' width='100%' height='564' style='display:none;'>
+                  <param name='host_url' value='http%3A%2F%2F181.49.46.6%2F' />
                   <param name='embed_code_version' value='3' />
                   <param name='site_root' value='' />
-                  <param name='name' value='ReporteFonade&#47;Resumenyestadstica' />
-                  <param name='tabs' value='no' />
-                  <param name='toolbar' value='yes' />
-                  <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;ReporteFonade&#47;Resumenyestadstica&#47;1.png' />
-                  <param name='animate_transition' value='yes' />
-                  <param name='display_static_image' value='yes' />
-                  <param name='display_spinner' value='yes' />
-                  <param name='display_overlay' value='yes' />
-                  <param name='display_count' value='yes' />
+                  <param name='name' value='ANSFonade&#47;MantenimientosFinalizados' />
+                  <param name='tabs' value='yes' /><param name='toolbar' value='yes' />
+                  <param name='showAppBanner' value='false' />
+                  <param name='filter' value='iframeSizedToWindow=true' />
                 </object>
               </div>
-              <script type='text/javascript'>
-                var divElement = document.getElementById('viz1518192977179');
-                var vizElement = divElement.getElementsByTagName('object')[0];
-                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*2)+'px';
-                var scriptElement = document.createElement('script');
-                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                    vizElement.parentNode.insertBefore(scriptElement, vizElement);
-              </script>
             </section>
+
 
       <!-- fin graficas -->
       <!-- tablas -->
@@ -276,6 +229,10 @@
                 $meses[12] = 'Diciembre';
                 $meses[13] = 'Enero';
                 $meses[14] = 'Febrero';
+                $meses[15] = 'Marzo';
+                $meses[16] = 'Abril';
+                $meses[17] = 'Mayo';
+
                 echo "<br><br><br>";
           echo "<h2 class='under'>"."Resumen mensual de estados por Ticket</h2>";
           // echo "<div class='contenedorMeses'";
@@ -286,10 +243,10 @@
                     echo "<li class='dropdown-header'>2017: </li>";
 
                   for ($p = 1; $p <= count($meses); $p++){
-                    if ($p == 14){
+                    if ($p == 17){
                       echo "<li class='selected mes'><a href='#tab".$p."'><center>".$meses[$p]."</center></a></li>";
                     } else {
-                        if ($p > 12) {
+                        if ($p == 13) {
                           echo "<li class='dropdown-header'>2018: </li>";
                         }
                           echo "<li class='mes'><a class='mesa' href='#tab".$p."'><center>".$meses[$p]."</center></a></li>";
@@ -350,12 +307,12 @@
    <div class="main zerogrid">
      <article id="content2">
        <div class="wrapper row">
- 
+
        </div>
      </article>
    <!-- content end -->
    </div>
- </div> 
+ </div>
 
 <!-- MODAL MP -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -472,7 +429,7 @@
             if(ticket[i].maintenance){
               for(var j = 0; j < ticket[i].maintenance.length; j++){
                 if(ticket[i].maintenance[j].ticket){
-                  console.log(ticket[i].maintenance[j].ticket);
+                  //console.log(ticket[i].maintenance[j].ticket);
                   var año = ticket[i].maintenance[j].date.split("-")[0];
                   var mes = ticket[i].maintenance[j].date.split("-")[1];
                   var linea = "<tr>";
@@ -487,30 +444,49 @@
 
                   linea = linea  + "<td><a onclick='modalEditar(\""+ticket[i].maintenance[j].ticket[0].id+"\")'>"+ticket[i].maintenance[j].ticket[0].id+"</a></td>";
 
+                  if(ticket[i].maintenance[j].ticket[0].dateStartIT == "0000-00-00"){
+                    ticket[i].maintenance[j].ticket[0].dateStartIT = null;
+                  }
 
+                  if(ticket[i].maintenance[j].ticket[0].dateFinishIT == "0000-00-00"){
+                    ticket[i].maintenance[j].ticket[0].dateFinishIT = null;
+                  }
 
+                  if(ticket[i].maintenance[j].ticket[0].dateStartAA == "0000-00-00"){
+                    ticket[i].maintenance[j].ticket[0].dateStartAA = null;
+                  }
 
-                  if(ticket[i].maintenance[j].ticket[0].dateStartIT == null && ticket[i].maintenance[j].ticket[0].dateFinishIT == null){
+                  if(ticket[i].maintenance[j].ticket[0].dateFinishAA == "0000-00-00"){
+                    ticket[i].maintenance[j].ticket[0].dateFinishAA = null;
+                  }
+
+                  if((ticket[i].maintenance[j].ticket[0].dateStartIT == null) && (ticket[i].maintenance[j].ticket[0].dateFinishIT == null )){
                     linea = linea  + "<td>Sin Iniciar</td>";
                   }
-                  if(ticket[i].maintenance[j].ticket[0].dateStartIT != null && ticket[i].maintenance[j].ticket[0].dateFinishIT == null){
+                  if((ticket[i].maintenance[j].ticket[0].dateStartIT != null ) && (ticket[i].maintenance[j].ticket[0].dateFinishIT == null )){
                     linea = linea  + "<td>En Progreso</td>";
                   }
-                  if(ticket[i].maintenance[j].ticket[0].dateStartIT != null && ticket[i].maintenance[j].ticket[0].dateFinishIT != null){
+                  if((ticket[i].maintenance[j].ticket[0].dateStartIT != null ) && (ticket[i].maintenance[j].ticket[0].dateFinishIT != null )){
                     linea = linea  + "<td>Ejecutado</td>";
                   }
 
-                  if(ticket[i].maintenance[j].ticket[0].dateStartAA == null && ticket[i].maintenance[j].ticket[0].dateFinishAA == null){
+                  if((ticket[i].maintenance[j].ticket[0].dateStartAA == null ) && (ticket[i].maintenance[j].ticket[0].dateFinishAA == null )){
                     linea = linea  + "<td>Sin Iniciar</td>";
                   }
-                  if(ticket[i].maintenance[j].ticket[0].dateStartAA != null && ticket[i].maintenance[j].ticket[0].dateFinishAA == null){
+                  if((ticket[i].maintenance[j].ticket[0].dateStartAA != null ) && (ticket[i].maintenance[j].ticket[0].dateFinishAA == null )){
                     linea = linea  + "<td>En Progreso</td>";
                   }
-                  if(ticket[i].maintenance[j].ticket[0].dateStartAA != null && ticket[i].maintenance[j].ticket[0].dateFinishAA != null){
+                  if((ticket[i].maintenance[j].ticket[0].dateStartAA != null ) && (ticket[i].maintenance[j].ticket[0].dateFinishAA != null)){
                     linea = linea  + "<td>Ejecutado</td>";
                   }
 
                   linea = linea  + "<td>"+ticket[i].maintenance[j].ticket[0].status+"</td>";
+                  if(ticket[i].maintenance[j].ticket[0].dateStart == "0000-00-00" || ticket[i].maintenance[j].ticket[0].dateStart == null){
+                    ticket[i].maintenance[j].ticket[0].dateStart = "";
+                  }
+                  if(ticket[i].maintenance[j].ticket[0].dateFinish == "0000-00-00" || ticket[i].maintenance[j].ticket[0].dateFinish == null){
+                    ticket[i].maintenance[j].ticket[0].dateFinish = "";
+                  }
                   linea = linea  + "<td>"+ticket[i].maintenance[j].ticket[0].dateStart+"</td>";
                   linea = linea  + "<td>"+ticket[i].maintenance[j].ticket[0].dateFinish+"</td>";
                   linea = linea  + "<td>"+ticket[i].maintenance[j].ticket[0].duracion+"</td>";
@@ -558,6 +534,16 @@
                   if(mes == 02 && año == 2018){
                     $("#table3-14").find('tbody').append(linea);
                   }
+                  if(mes == 03 && año == 2018){
+                    $("#table3-15").find('tbody').append(linea);
+                  }
+                  if(mes == 04 && año == 2018){
+                    $("#table3-16").find('tbody').append(linea);  
+                  }
+                  if(mes == 05 && año == 2018){
+                    $("#table3-17").find('tbody').append(linea);
+
+                  }
                 }
               }
             }
@@ -599,7 +585,12 @@
             tf13.init();
             var tf14 = new TableFilter('table3-14', filtersConfig);
             tf14.init();
-
+            var tf15 = new TableFilter('table3-15', filtersConfig);
+            tf15.init();
+            var tf16 = new TableFilter('table3-16', filtersConfig);
+            tf16.init();
+            var tf17 = new TableFilter('table3-17', filtersConfig);
+            tf17.init();
         });
 
 

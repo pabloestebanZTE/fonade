@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 
-$active_group = 'local';
+$active_group = 'servidor';
 $query_builder = TRUE;
 
 /*********************LOCAL HOST***********************************/
@@ -116,10 +116,7 @@ $db['servidor'] = array(
 	'swap_pre' => '',
 	'encrypt' => FALSE,
 	'compress' => FALSE,
-	'stricton' => FALSE,	
+	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
-
-

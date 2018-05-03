@@ -163,8 +163,10 @@
                           echo "<input type='text' name='CAdministrador'  id='CAdministrador' value='".$pvds[0]->getAdmin()['I_PHONE']."' disabled='disabled'>";
 
                           echo "<legend><span class='number'>2</span> Información Mantenimiento</legend>";
-                          echo "<label for='job'>Fecha:</label>";
+                          echo "<label for='job'>Fecha Tentativa Inicio:</label>";
                           echo "<input type='date' name='date' placeholder='Fecha *' required>";
+                          echo "<label for='job'>Fecha Tentativa Fin:</label>";
+                          echo "<input type='date' name='dateFinish' placeholder='Fecha *' required>";
                           echo "<label for='job'>Nombre del técnico IT:</label>";
                           echo "<select id='TIT' name='TIT'>";
                             echo "<option value='-1'></option>";

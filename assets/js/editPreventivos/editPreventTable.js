@@ -15,6 +15,7 @@ $(function () {
         events: function () {
             //Al darle clic a una fila llama la funcion onClickTrTablePreventive
             $('#tablePreventive').on('click', 'tr', vista.onClickTrTablePreventive);
+
             //funcion para llenar select del formulario del modal
             vista.fillSelect();
             if (permisos == 1) {
@@ -22,6 +23,24 @@ $(function () {
             } else {
               $('#mbtnUpdticket').on('click',alert('no tienes permiso para editar tickets'));
             }
+
+
+          // Se dispara esta funcion cuando se cierra el mnoldal
+          $('#modalEditTicket').on('hidden.bs.modal', function (e) {
+              // limpio el dive para cuando se vuelva a abrir
+              $('#newItSeccion').html('');
+              $('#newAASeccion').html('');
+              // Borro el boton a agregar tecnicos que existia en el anterior modal
+              $('#mbtn-addIT').remove();
+              $('#mbtn-addAA').remove();
+
+
+          })
+
+
+
+
+
 
             // $('table').off('click', '.btn-preview', vista.onClickPreviewBtn);
             // $('table').on('click', '.btn-preview', vista.onClickPreviewBtn);
@@ -42,8 +61,15 @@ $(function () {
         },
         //llama el modal
         modalEditar: function(registro){
+          console.log(registro);
           //mostrar modal
           $('#modalEditTicket').modal('show');
+
+          // Creo los botones para agregar tecnicos (selects)
+          $('#fieldsetIT').prepend('<button id="mbtn-addIT" type="button" class="btn-upLoad" > Técnico IT &nbsp;&nbsp;&nbsp;&nbsp;<span class=" glyphicon glyphicon-plus"></span></button>');
+          $('#fieldsetAA').prepend('<button id="mbtn-addAA" type="button" class="btn-upLoad" > Técnico AA &nbsp;&nbsp;&nbsp;&nbsp;<span class=" glyphicon glyphicon-plus"></span></button>');
+
+
           // se compara si viene vacio alguno de los campos de usuarios
           var valTecIT = registro.T_IT ? registro.T_IT.K_IDUSER.K_IDUSER : "";
           var valAuxIT = registro.A_IT ? registro.A_IT.K_IDUSER.K_IDUSER : "";
@@ -72,8 +98,123 @@ $(function () {
           $ ('#mtxtObservaciones').val(registro.K_OBSERVATION_I);
           // pintp el titulo del modal con el ticket correspondiente
           $ ('#myModalLabel').html('Editar Ticket&nbsp;&nbsp;&nbsp;&nbsp;<b>' + registro.K_IDTICKET +'</b>');
+
+
+          // PARA AGREGAR O ELIMINAR SELECTS PARA AÑADIR TECNICOS del modal
+          $('#mbtn-addIT').on('click', vista.addSelectIT);
+          $('#mbtn-addAA').on('click', vista.addSelectAA);
+
+          // PARA REMOVER SELECTS PARA AÑADIR TECNICOS del modal
+          $('#newItSeccion').on('click', 'span.btn-minus', vista.removeSelect);
+          $('#newAASeccion').on('click', 'span.btn-minus', vista.removeSelect);  
+
+
+          $.post(baseurl + "Mantenimientos/getTicketUsersPlus",
+            {
+              ticket: registro.K_IDTICKET              
+            },
+            function (data){
+              var users = JSON.parse(data);
+              var dn = "";
+              var xd;
+              console.log(users);
+              for (var i = 0; i < users[0].length; i++) {
+                    dn = '';
+                    dn += '<div class="form-group">';
+                      dn += '<label for="mtxtITplus" class="col-md-3 control-label">Tec IT+: &nbsp;</label>';
+                      dn += '<div class="col-md-8 selectContainer">';
+                          dn += '<div class="input-group">';
+                              dn += '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>';
+                              dn += ' <input name="mtxtITplus" class="form-control" type="text" readonly value="'+users[0][i].nombre+'">';
+                          dn += '</div>';
+                      dn += '</div>';
+                    dn += '</div>';
+
+                $('#newItSeccion').append(dn);
+              }
+
+
+              for (var j = 0; j < users[1].length; j++) {
+                    dn = '';
+                    dn += '<div class="form-group">';
+                      dn += '<label for="mtxtAAplus" class="col-md-3 control-label">Tec AA+: &nbsp;</label>';
+                      dn += '<div class="col-md-8 selectContainer">';
+                          dn += '<div class="input-group">';
+                              dn += '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>';
+                              dn += ' <input name="mtxtAAplus" class="form-control" type="text" readonly value="'+users[1][j].nombre+'">';
+                          dn += '</div>';
+                      dn += '</div>';
+                    dn += '</div>';
+
+                $('#newAASeccion').append(dn);
+              }
+
+
+
+
+            }
+          );
+
+
+
+
           
         },
+
+
+        //Agrego un select para añadir tecnicos
+        addSelectIT: function(){
+
+            var newSelect = "";
+                newSelect += '<span>';
+                  newSelect += '<div class="form-group">';
+                    newSelect += '<label for="mtxtNewTecIT[]" class="col-md-3 control-label">Téc IT:</label>';
+                    newSelect += '<div class="col-md-9 selectContainer">';
+                      newSelect += '<div class="input-group">';
+                        newSelect += '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                      ';
+                        newSelect += '<select name="mtxtNewTecIT[]" id="mtxtNewTecIT[]" class="form-control mtxtTecnico">';
+                          newSelect += '<option value=""></option>';
+                        newSelect += '</select>';
+                        newSelect += '<span class="input-group-addon btn-minus"><i class="glyphicon glyphicon-minus"></i></span>';
+                      newSelect += '</div>';
+                    newSelect += '</div>';
+                  newSelect += '</div>';
+                newSelect += '</span>';
+
+            $('#newItSeccion').append(newSelect);
+            vista.fillSelect();
+
+        },
+
+        //Agrego un select para añadir tecnicos AA
+        addSelectAA: function(){
+            var newSelect = "";
+                newSelect += '<span>';
+                  newSelect += '<div class="form-group">';
+                    newSelect += '<label for="mtxtNewTecAA[]" class="col-md-3 control-label">Téc AA:</label>';
+                    newSelect += '<div class="col-md-9 selectContainer">';
+                      newSelect += '<div class="input-group">';
+                        newSelect += '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                      ';
+                        newSelect += '<select name="mtxtNewTecAA[]" id="mtxtNewTecAA[]" class="form-control mtxtTecnico">';
+                          newSelect += '<option value=""></option>';
+                        newSelect += '</select>';
+                        newSelect += '<span class="input-group-addon btn-minus"><i class="glyphicon glyphicon-minus"></i></span>';
+                      newSelect += '</div>';
+                    newSelect += '</div>';
+                  newSelect += '</div>';
+                newSelect += '</span>';
+
+            $('#newAASeccion').append(newSelect);
+            vista.fillSelect();
+        },
+
+        //remueve select al darle clic
+        removeSelect: function(){
+            var span = $(this);
+            var spanParent = span.parents('span');
+            spanParent.remove();
+        },
+
 
         fillSelect: function(){
           $.post(baseurl + "user/getTechnical",
@@ -85,19 +226,19 @@ $(function () {
                 var users = JSON.parse(data);
                 // Pinto el select de Tecnico IT 
                 $.each(users['IT-T'],function(i,item){
-                  $('#mtxtTecIT').append('<option value="'+item.id+'">'+item.nombre+'</option>');
+                  $('.mtxtTecnico').append('<option value="'+item.id+'">'+item.nombre+'</option>');
                 }); 
                 // Pinto el select de Auxiliar IT 
                 $.each(users['IT-A'],function(i,item){
-                  $('#mtxtAuxIT').append('<option value="'+item.id+'">'+item.nombre+'</option>');
+                  $('.mtxtTecnico').append('<option value="'+item.id+'">'+item.nombre+'</option>');
                 });
                  // Pinto el select de Tecnico AA 
                 $.each(users['AA-T'],function(i,item){
-                  $('#mtxtTecAA').append('<option value="'+item.id+'">'+item.nombre+'</option>');
+                  $('.mtxtTecnico').append('<option value="'+item.id+'">'+item.nombre+'</option>');
                 }); 
                 // Pinto el select de Auxiliar AA 
                 $.each(users['AA-A'],function(i,item){
-                  $('#mtxtAuxAA').append('<option value="'+item.id+'">'+item.nombre+'</option>');
+                  $('.mtxtTecnico').append('<option value="'+item.id+'">'+item.nombre+'</option>');
                 });
 
           });
@@ -378,6 +519,21 @@ $(function () {
           var repaint = [nameStatus, color, iniIT, finIT, nameTIT, nameAIT, iniAA, finAA, nameTAA, nameAAA];
 
 
+          /************************Calculo los tecnicos adicionales del ticket************************/
+          var tecITAdd = [];
+          var tecAAAdd = [];          
+          $("select[name='mtxtNewTecIT[]']").each(function (i, item) {
+                tecITAdd[i] = $(this).val();
+          });
+          $("select[name='mtxtNewTecAA[]']").each(function (i, item) {
+                tecAAAdd[i] = $(this).val();
+          });
+                
+          // console.log(tecITAdd);
+          // console.log(tecAAAdd);
+
+
+
           /***************Envio los datos obtenidos por ajax al controlador para actualizar***************/
           // Ruta del controlador y funcion donde enviamos la peticion
           $.post(baseurl+"Mantenimientos/updateMantPreventivo", 
@@ -397,7 +553,9 @@ $(function () {
               mtxtAuxAA:auxAA,
               mtxtIniAA:iniAA,
               mtxtFinAA:finAA,
-              mtxtObservaciones:observacion
+              mtxtObservaciones:observacion,
+              tecsITAdd: tecITAdd,
+              tecsAAAdd:tecAAAdd
              },
               //callback, metodo que va a recibir la respuesta del controlador   
               function(data){
@@ -461,18 +619,18 @@ $(function () {
           vista.tr.find('td:eq(12)').html("<div style='color:blue;'>" + obj[9] + "</div>")       
         },
 
-        onClickVerActividadTr: function(){
-            var aLink = $(this);
-            var trParent = aLink.parents('tr');
-            var record = vista.tablePreventive.row(trParent).data();
-            modalEditar(record, record.id, $('#session_id').val(), $('#session_role').val());
-        },
-        onClickVerActividadGd: function(){
-            var aLink = $(this);
-            var trParent = aLink.parents('tr');
-            var record = vista.tableGDATOS.row(trParent).data();
-            modalEditar(record, record.id, $('#session_id').val(), $('#session_role').val());
-        },
+        // onClickVerActividadTr: function(){
+        //     var aLink = $(this);
+        //     var trParent = aLink.parents('tr');
+        //     var record = vista.tablePreventive.row(trParent).data();
+        //     modalEditar(record, record.id, $('#session_id').val(), $('#session_role').val());
+        // },
+        // onClickVerActividadGd: function(){
+        //     var aLink = $(this);
+        //     var trParent = aLink.parents('tr');
+        //     var record = vista.tableGDATOS.row(trParent).data();
+        //     modalEditar(record, record.id, $('#session_id').val(), $('#session_role').val());
+        // },
         onClickTabTables: function () {
             var tab = $(this);
             var path = tab.attr('href');
