@@ -221,7 +221,7 @@ class Equipment extends CI_Controller {
    //  $this->email->to(strtolower($mailEngC).', '.strtolower($asig->getMail()));
 
      if($PVD->getRegion() == "Zona 1"){
-      $this->email->to('sandra.cardenas@zte.com.cn, jonnatan.villalobos@zte.com.cn, marcela.espitiacuervo@zte.com.cn, johan.beltran@zte.com.cn, coordinador.tecnico1@fonadeud.com.co');
+      $this->email->to('sandra.cardenas@zte.com.cn, jonnatan.villalobos@zte.com.cn, andrea.sanchez@zte.com.cn, johan.beltran@zte.com.cn, coordinador.tecnico1@fonadeud.com.co');
       }else {
       $this->email->to('sandra.cardenas@zte.com.cn, oscar.gonzalez01@zte.com.cn, juan.ramirez@zte.com.cn, johan.beltran@zte.com.cn, coordinador.tecnico4@fonadeud.com.co');
      }
