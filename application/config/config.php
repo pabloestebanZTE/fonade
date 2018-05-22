@@ -35,8 +35,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // $config['base_url'] = 'http://testzte.us-west-2.elasticbeanstalk.com/';}
 
 
-/************************+**SERVIDOR CLIENTE***********************+***/
-$config['base_url'] = 'http://fonade.us-west-2.elasticbeanstalk.com/';
+/************************+**SERVIDOR MAZONE***********************+***/
+// $config['base_url'] = 'http://fonade.us-west-2.elasticbeanstalk.com/';
+
+/************************+**SERVIDOR GOOGLE***********************+***/
+$config['base_url'] = 'https://bicyclestore-203409.appspot.com/';
 
 
 
