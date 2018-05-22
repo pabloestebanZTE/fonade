@@ -61,7 +61,7 @@ $(function () {
         },
         //llama el modal
         modalEditar: function(registro){
-          console.log(registro);
+          // console.log(registro);
           //mostrar modal
           $('#modalEditTicket').modal('show');
 
@@ -116,8 +116,6 @@ $(function () {
             function (data){
               var users = JSON.parse(data);
               var dn = "";
-              var xd;
-              console.log(users);
               for (var i = 0; i < users[0].length; i++) {
                     dn = '';
                     dn += '<div class="form-group">';

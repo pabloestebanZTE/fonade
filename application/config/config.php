@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 /************************+**SERVIDOR CLIENTE***********************+***/
-$config['base_url'] = 'http://zte.consorcio2018technical.com/';
+$config['base_url'] = 'http://fonade.us-west-2.elasticbeanstalk.com/';
 
 
 

@@ -31,6 +31,8 @@ class Ticket extends CI_Controller {
       $this->load->view('ticketDetail', $respuesta);
     }
 
+
+
     public function ticketCorrectiveDetails(){
       echo "correctivos";
       $respuesta['ticket'] = $this->dao_ticket_model->getCorrectiveTicketByID($_GET['k_ticket']);
@@ -49,7 +51,7 @@ class Ticket extends CI_Controller {
 
     public function fixArrayUsers($respuesta){
       $i = 0;
-      if($respuesta['ticket']->getTechs()['users']>0){
+      if(count($respuesta['ticket']->getTechs()['users']) > 0){
         if($respuesta['ticket']->getTechs()['users']['AA_T'] != ""){
           $respuesta['viaticos'][$i] =  $respuesta['ticket']->getTechs()['users']['AA_T'];
           $i++;
@@ -66,6 +68,21 @@ class Ticket extends CI_Controller {
           $respuesta['viaticos'][$i] =  $respuesta['ticket']->getTechs()['users']['IT_A'];
           $i++;
         }
+
+        if (isset($respuesta['ticket']->getTechs()['users']['IT-T+'])) {
+          for ($j=0; $j < count($respuesta['ticket']->getTechs()['users']['IT-T+']) ; $j++) { 
+            $respuesta['viaticos'][$i] = $respuesta['ticket']->getTechs()['users']['IT-T+'][$j];
+            $i++;
+          }
+        }
+
+        if (isset($respuesta['ticket']->getTechs()['users']['AA-T+'])) {
+          for ($j=0; $j < count($respuesta['ticket']->getTechs()['users']['AA-T+']) ; $j++) { 
+            $respuesta['viaticos'][$i] = $respuesta['ticket']->getTechs()['users']['AA-T+'][$j];
+            $i++;
+          }
+        }
+
       }
       return $respuesta;
     }
